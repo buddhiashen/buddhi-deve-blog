@@ -96,3 +96,91 @@ while True:
         print("That's not a valid play. Check your spelling!")
     computer = random.choice(choices)
 ```
+
+## 3. Password Generator at Random
+
+A strong password is one that contains a combination of characters, digits, and special symbols.
+
+Assume you want to create a random password such as: -
+
+87t@h*ki ab23cd#$ jk percent m&l98 87t@h*ki
+In Python, we can generate a random string password with letters, special characters, and digits in two ways.
+
+Combine the three constants listed below and use them as a data source for the random.choice() function to choose random characters from.
+string.ascii letters: To include a-z letters and an A-Z string. digits: A string of digits ranging from 1 to 10. To obtain special symbols, use punctuation.
+Use the string.printable constant and the function choice(). String.printable contains digits, ascii letters (lowercase and uppercase letters), punctuation, and whitespace.
+
+```python
+import random
+import string
+
+# get random password pf length 8 with letters, digits, and symbols
+characters = string.ascii_letters + string.digits + string.punctuation
+password = ''.join(random.choice(characters) for i in range(8))
+print("Random password is:", password)
+```
+
+### output:
+```shell
+Random password is: 6(I3goZ}
+```
+### Using the ```string.printable```
+
+```python
+import random
+import string
+
+password = ''.join(random.choice(string.printable) for i in range(8))
+print("Random password is:", password)
+```
+
+### output:
+
+```shell
+Random password is: hY*34jj.
+```
+### Random password with a predetermined number of letters, digits, and symbols
+Passwords must contain a certain number of digits and special symbols, which is a common use case.
+
+Let's look at how to make a random password with at least one lowercase letter, one uppercase letter, one digit, and one special symbol.
+
+Steps: -
+
+First, choose the specified number of random lowercase and uppercase letters.
+Then, select the number of random digits.
+Then, select the number of special symbols.
+Make a list of letters, digits, and special symbols.
+Finally, reshuffle the list.
+Convert a list to a string.
+
+```python
+import random
+import string
+
+def get_random_password():
+    random_source = string.ascii_letters + string.digits + string.punctuation
+    # select 1 lowercase
+    password = random.choice(string.ascii_lowercase)
+    # select 1 uppercase
+    password += random.choice(string.ascii_uppercase)
+    # select 1 digit
+    password += random.choice(string.digits)
+    # select 1 special symbol
+    password += random.choice(string.punctuation)
+
+    # generate other characters
+    for i in range(6):
+        password += random.choice(random_source)
+
+    password_list = list(password)
+    # shuffle all characters
+    random.SystemRandom().shuffle(password_list)
+    password = ''.join(password_list)
+    return password
+
+print("First Random Password is ", get_random_password())
+# output  qX49}]Ru!(
+print("Second Random Password is ", get_random_password())
+# Output  3nI0.V#[T
+```
+
