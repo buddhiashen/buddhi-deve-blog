@@ -33,7 +33,7 @@ const Layout = ({ children, customMeta }: LayoutProps): JSX.Element => {
             className="text-gray-900 dark:text-white"
             href="https://twitter.com/huntarosan"
           >
-            Hunter Chang
+            Buddhi ashen
           </a>
         </div>
       </footer>
