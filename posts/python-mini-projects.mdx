@@ -48,3 +48,51 @@ while True:
 ```
 ### Output:
 For using random integer numbers, the output of the above script will vary with each iteration of the loop. The number 5 is generated in the first iteration of the loop displayed using 5 zeros in the following output. The user then typed 'y' to continue the loop, and 4 was generated in the second iteration of the loop and displayed using zeros as before. When the user types 'n,' the script terminates.
+
+## 2. The Game of Rock, Paper, and Scissors
+The goal is to create a command-line game in which a user is given the option of choosing between rock, paper, and scissors, and if the user wins, a score is added, and when the user completes the game, the score is displayed to the user.
+
+Hint: Compare the user choice to the computer choice, which is drawn from a list of options using the random module, and if the user wins, increase the score by one.
+
+```python
+import random
+choices = ["Rock", "Paper", "Scissors"]
+computer = random.choice(choices)
+player = False
+cpu_score = 0
+player_score = 0
+while True:
+    player = input("Rock, Paper or  Scissors?").capitalize()
+    ## Conditions of Rock,Paper and Scissors
+    if player == computer:
+        print("Tie!")
+    elif player == "Rock":
+        if computer == "Paper":
+            print("You lose!", computer, "covers", player)
+            cpu_score+=1
+        else:
+            print("You win!", player, "smashes", computer)
+            player_score+=1
+    elif player == "Paper":
+        if computer == "Scissors":
+            print("You lose!", computer, "cut", player)
+            cpu_score+=1
+        else:
+            print("You win!", player, "covers", computer)
+            player_score+=1
+    elif player == "Scissors":
+        if computer == "Rock":
+            print("You lose...", computer, "smashes", player)
+            cpu_score+=1
+        else:
+            print("You win!", player, "cut", computer)
+            player_score+=1
+    elif player=='E':
+        print("Final Scores:")
+        print(f"CPU:{cpu_score}")
+        print(f"Plaer:{player_score}")
+        break
+    else:
+        print("That's not a valid play. Check your spelling!")
+    computer = random.choice(choices)
+```
