@@ -13,8 +13,8 @@ type IndexProps = {
 export const Index = ({ posts }: IndexProps): JSX.Element => {
   return (
     <Layout>
-      <h1>How are you fellas!</h1>
-      <h2>Hello ! , I&apos;m Buddhi Ashen - curious fullstack student and Python noob based in Colombo, Sri-Lanka. This is my platform that i share my works, how i manage to solve problem when i am doing coding  and programming and many more....</h2>
+      <h1>How are you fellas! 🤚</h1>
+      <h2>Hello 👋 ! , I&apos;m Buddhi Ashen - curious fullstack student and Python noob based in Colombo, Sri-Lanka. This is my platform that i share my works, how i manage to solve problem when i am doing coding  and programming and many more....</h2>
       <br /> <br />
       <p><a href="https://buddhi-ashen.github.io/buddhiashen/">My portfolio</a></p>
       <p>i build this blog using a next js boilerplate template with:</p>
