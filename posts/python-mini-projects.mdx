@@ -1,0 +1,50 @@
+---
+title: Code for 10 Python Mini Projects
+description: Build These Amazing Python Projects to Accelerate Your Python Journey.
+date: '2021-03-10'
+---
+I've been using Python lasted for approximately a 6 months, and my favorite things about it are its one-liners and packages. One thing I've realized is that construction projects in a programming language is the most effective method for learning it.
+
+This blog will show you 21 python projects with code. I would recommend that you first try to build your possess solution before looking into mine because you may be able to build a better solution than I. If you are an expert in Python, you can also try these projects to brush up on your skills. Let's get started.
+
+## 1. Dice Roll Simulator
+
+The goal is to develop a program that simulates the roll of a die.
+
+When the user asks, use the random module to generate a number between 1 and 6.
+
+In this tutorial, you will learn how to create a simple dice rolling simulator using Python's random module. This script will output the dice results to the terminal. As a result, the script makes no use of an image processing module. A variable called dice is used to generate a random number between 1 and 6. The function roll the dice() is defined here to generate output based on a random value. In the script, the infinite while loop is used to roll the dice infinitely until the user types anything other than 'y'.
+
+```python
+# Import random module
+import random
+
+# Define infinite loop
+while True:
+
+    # Generate a random number between 1 and 6
+    dice = random.randint(1, 6)
+
+    # Define the function to print the output based on the dice value
+    def roll_the_dice(dice):
+        switcher = {
+            1: "[     ]\n|  0  |\n[     ]",
+            2: "[0    ]\n|     |\n[    0]",
+            3: "[0    ]\n|  0  |\n[    0]",
+            4: "[0   0]\n|     |\n[0   0]",
+            5: "[0   0]\n|  0  |\n[0   0]",
+            6: "[ 0 0 ]\n| 0 0 |\n[ 0 0 ]"
+
+        }
+        return switcher.get(dice)
+
+    # Call the function
+    print(roll_the_dice(dice))
+    # Ask user for rolling the dice again
+    answer = input("Do you want to roll the dice again(y/n)? : ")
+    # Terminate the loop if the user type anything without 'y'
+    if answer != 'y':
+        exit(0)
+```
+### Output:
+For using random integer numbers, the output of the above script will vary with each iteration of the loop. The number 5 is generated in the first iteration of the loop displayed using 5 zeros in the following output. The user then typed 'y' to continue the loop, and 4 was generated in the second iteration of the loop and displayed using zeros as before. When the user types 'n,' the script terminates.
