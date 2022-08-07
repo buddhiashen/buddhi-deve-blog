@@ -1,0 +1,90 @@
+if you are an ironman fan you probably know about his two AI systems called 'Jarvis' & 'friday'. tony use speech recognition to give commands to his AI systems.
+
+how to do it in the real world, is it possible? the answer is yes it is. in here we use python to make a program that recognizes your speech and prints it out as text. let's get to work.
+
+requirements for this project :
+
+1. Python 3
+2. Python speech recognition module.
+
+now let's code.
+
+to install the python speech recognition model, type this in your terminal
+
+    pip install SpeechRecognition
+
+and we use the microphone as our input method. in python to use a microphone we need another module name called "Pyaudio". to install that type this in your terminal.
+
+    pip install PyAudio
+
+now all set. we have to write some code to make a speech recognition system.
+
+first of all import all necessary libraries.
+
+    import speech_recognition as sr
+
+now initialize the recognizer.
+
+    listener = sr.Recognizer()
+
+now we use an error handler in case there is an error. we use to `try` and `except`
+
+    try:
+        with sr.Microphone() as source:
+            print('listning...')
+            voice = listener.listen(source)
+            command = listener.recognize_google(voice)
+            print(command)
+    
+    except:
+        pass
+
+&#x200B;
+
+Now, let's break down this one by one;
+
+    with sr.Microphone() as source:
+
+this means with the speech recognition model (we rename speech recognition as "sr" in the beginning) gets the microphone as a source of input.
+
+    print('listning...')
+
+print out the text "listing"
+
+    voice = listener.listen(source)
+
+get the user's
+
+voice as input through the microphone
+
+    command = listener.recognize_google(voice)
+
+now we pass the user's voice into the google speech recognizer, by the way, we need an internet connection for this project.
+
+    print(command)
+
+now print out what the user said
+
+the output will be like this :
+
+    PS C:\Users\User\Desktop\python practice\ai> & "C:/Program Files/Python39/python.exe" "c:/Users/User/Desktop/python practice/ai/speech-recognition.py"
+    listning...
+    hello
+    PS C:\Users\User\Desktop\python practice\ai> 
+
+congratulations, now you build your own voice recognition system by using python. if you face any kind of trouble or error please inform me. about that. I like to help you with that.
+
+the complete code :
+
+    import speech_recognition as sr
+    
+    listener = sr.Recognizer()
+    try:
+        with sr.Microphone() as source:
+            print('listning...')
+            voice = listener.listen(source)
+            command = listener.recognize_google(voice)
+            print(command)
+    
+    except:
+        pass
