@@ -1,0 +1,162 @@
+---
+title: Python speech recognition when you are offline
+description: In the first article, we talk and building a speech recognition system but it uses the internet to connect to google and use its speech recognition algorithm....
+date: '2022-08-10'
+---
+
+In the first article, we talk and building a speech recognition system but it uses the internet to connect to google and use its speech recognition algorithm, today in this article we going to build a speech recognition system when you are offline.
+
+let's get started.
+
+First of all, there is a python library called, VOSK. to install it on your computer type this command
+
+```shell
+pip3 install vosk
+```
+
+for more details please visit:
+
+```shell
+https://alphacephei.com/vosk/install
+```
+
+now we need to install my audio
+
+```shell
+pip install pyaudio
+```
+
+now our pre-requirements are done, now we have to build the offline speech recognition program. first, we need to import all the necessary
+
+```python
+from vosk import Model, KaldiRecognizer
+import pyaudio
+```
+
+here what we do is import the model and the kaldiRecognizer from the vosk library. along with that, we import py audio.
+
+now we have to download the model for that go to this website and choose your preferred model and download it:
+
+```shell
+https://alphacephei.com/vosk/models
+```
+
+here I use "  `vosk-model-small-en-us-0.15` " as my model
+
+after download, you can see it is a compressed file unzip it in your root folder, like this
+
+```shell
+speech-recognition/
+    ├─ vosk-model-small-en-us-0.15 ( Unzip follder ) 
+    ├─ offline-speech-recognition.py ( python file )
+```
+
+now create a variable called " model " and type this
+
+```shell
+model = Model(r"C:\\Users\User\Desktop\python practice\ai\vosk-model-small-en-us-0.15")
+```
+
+what we do here we create a variable called " model " and assign our unzip folder location with the Model
+
+```shell
+speech-recognition/
+    ├─ vosk-model-small-en-us-0.15 ( Unzip follder ) 
+```
+
+now we going to create a variable called " recognizer " and assign KaldiRecognizer
+
+```python
+recognizer = KaldiRecognizer(model, 16000) 
+```
+
+now as usual we have to import the microphone to our code so we import pyaudio
+
+now we going to call the pyaudio to use the microphone to catch the voice.
+
+```python
+mic = pyaudio.PyAudio()
+stream = mic.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=8192) stream.start_stream()
+```
+
+now we enter the fun part :
+
+```python
+while True:
+    data = stream.read(4096)
+    
+
+    if recognizer.AcceptWaveform(data):
+        text = recognizer.Result()
+        print(f"' {text[14:-3]} '")
+```
+
+what we do here is we write a while loop
+
+create a variable called data and assign it to a " [`stream.read`](https://stream.read)`(4096)` "
+
+```python
+    data = stream.read(4096)
+```
+
+now we create a decision " if "  recognizer caught a waveform in the data
+
+then assign the results to the variable called " text "  and print it out.
+
+```python
+    if recognizer.AcceptWaveform(data):
+            text = recognizer.Result()
+            print(text)
+```
+
+this is the output we got :
+
+```shell
+    {
+      "text" : "hello"
+    }
+    {
+      "text" : "hello"
+    }
+    {
+      "text" : "hi"
+    }
+```
+
+to remove { and "text" changes the print command to this :
+
+```python
+    print(f"' {text[14:-3]} '")
+```
+
+now the output will look like this , clean and more readable:
+
+```python
+    '  '
+    ' hello '
+    ' hi '
+    '  '
+```
+
+the complete code :
+
+```python
+    from vosk import Model, KaldiRecognizer
+    import pyaudio
+    
+    model = Model(r"C:\\Users\User\Desktop\python practice\ai\vosk-model-small-en-us-0.15")
+    recognizer = KaldiRecognizer(model, 16000)
+    
+    mic = pyaudio.PyAudio()
+    stream = mic.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=8192)
+    stream.start_stream()
+    
+    while True:
+        data = stream.read(4096)
+        
+    
+        if recognizer.AcceptWaveform(data):
+            text = recognizer.Result()
+            print(f"' {text[14:-3]} '")
+```
+visit `https://alphacephei.com/vosk/models` for more languages and models.
